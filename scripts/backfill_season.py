@@ -51,7 +51,7 @@ while d <= END:
         # finale de la NBA Cup (Las Vegas) : ne compte pas au classement
         venue = ((comp.get("venue") or {}).get("fullName") or "")
         notes = " ".join((n.get("headline") or "") for n in comp.get("notes", []))
-        if "T-Mobile Arena" in venue or ("Cup" in notes and ("Final" in notes or "Championship" in notes)):
+        if "Cup" in notes and "Championship" in notes:
             log(f"{d} : finale NBA Cup ignorée ({venue} / {notes})"); continue
         teams = comp.get("competitors", [])
         if len(teams) != 2: continue
