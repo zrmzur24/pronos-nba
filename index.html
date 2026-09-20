@@ -256,9 +256,10 @@ function renderChart(players,history,book){
 }
 
 async function load(){
-  const bust='?t='+Date.now(), demo=new URLSearchParams(location.search).has('demo');
+  const q=new URLSearchParams(location.search), bust='?t='+Date.now(), demo=q.has('demo'), saison=q.get('saison');
+  const dir=saison?`data/${saison}/`:'data/';
   const files=['predictions','reference',demo?'demo_standings':'standings',demo?'demo_history':'history'];
-  const [pred,book,real,history]=await Promise.all(files.map(f=>fetch('data/'+f+'.json'+bust).then(r=>{if(!r.ok)throw new Error(f);return r.json();})));
+  const [pred,book,real,history]=await Promise.all(files.map(f=>fetch(dir+f+'.json'+bust).then(r=>{if(!r.ok)throw new Error(f);return r.json();})));
   const started=!!real.started&&real.east.length===15&&real.west.length===15;
   const realRanks={east:(real.east||[]).map(t=>t.team),west:(real.west||[]).map(t=>t.team)};
   const sc={};
@@ -271,8 +272,9 @@ async function load(){
     if(snap.date!==last){prevSc={};pred.players.forEach(p=>prevSc[p.name]=scorePlayer(p,{east:snap.east,west:snap.west},book));prevDate=snap.date.slice(8,10)+'/'+snap.date.slice(5,7);}
   }
   const d=real.updated?new Date(real.updated):null;
-  $('#stamp').innerHTML=demo?'<b>Démo</b><br>données fictives':(d&&started)?`Classement du<br><b>${d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</b>`:'Saison pas<br><b>encore lancée</b>';
-  if(started){const g=Math.max(...[...real.east,...real.west].map(t=>t.w+t.l));$('#season').innerHTML=`<span>Match ${g} sur 82</span><span class="track"><i style="width:${100*g/82}%"></i></span><span>${Math.round(100*g/82)} %</span>`;}
+  if(saison)document.querySelector('h1 small').textContent='Saison '+saison+' · replay';
+  $('#stamp').innerHTML=demo?'<b>Démo</b><br>données fictives':saison?'Saison<br><b>terminée</b>':(d&&started)?`Classement du<br><b>${d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</b>`:'Saison pas<br><b>encore lancée</b>';
+  if(started){const g=Math.min(82,Math.max(...[...real.east,...real.west].map(t=>t.w+t.l)));$('#season').innerHTML=`<span>Match ${g} sur 82</span><span class="track"><i style="width:${100*g/82}%"></i></span><span>${Math.round(100*g/82)} %</span>`;}
   else $('#season').innerHTML='<span>Saison régulière : 82 matchs, le classement final fait foi.</span>';
   renderLeaderboard(pred.players,sc,started,prevSc,prevDate);
   renderConf('east',pred.players,real,book,started);
