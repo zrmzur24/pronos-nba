@@ -1,0 +1,27 @@
+name: Mise à jour du classement NBA
+
+on:
+  schedule:
+    - cron: "0 12 * * *"   # tous les jours à 12h UTC (après les matchs de la nuit)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Récupérer le classement
+        run: python scripts/fetch_standings.py
+      - name: Enregistrer
+        run: |
+          git config user.name "pronos-bot"
+          git config user.email "pronos-bot@users.noreply.github.com"
+          git add data/standings.json data/history.json
+          git diff --cached --quiet || git commit -m "Classement du $(date -u +%Y-%m-%d)"
+          git push
