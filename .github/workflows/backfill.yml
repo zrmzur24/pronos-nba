@@ -1,0 +1,20 @@
+name: Reconstruire une saison passée
+on:
+  workflow_dispatch:
+    inputs:
+      end_year:
+        description: "Année de fin de saison (2026 pour 2025-26)"
+        default: "2026"
+permissions:
+  contents: write
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python scripts/backfill_season.py ${{ github.event.inputs.end_year }}
+      - run: |
+          git config user.name "pronos-bot"; git config user.email "pronos-bot@users.noreply.github.com"
+          git add data/; git diff --cached --quiet || git commit -m "Saison ${{ github.event.inputs.end_year }} reconstruite"; git push
