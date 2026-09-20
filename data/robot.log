@@ -1,7 +1,4 @@
-2026-09-20T10:26:08+00:00 — ECHEC
-Échec https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?season=2027&seasontype=2 -> HTTPError HTTP Error 403: Forbidden
+2026-09-20T10:28:16+00:00 — OK
 Réponse de https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=2027&seasontype=2 | clés : ['uid', 'id', 'name', 'abbreviation', 'shortName', 'children', 'isConference', 'season'] | saison : 2027
-Échec https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=2027&seasontype=2 -> RuntimeError Conférence east incomplète, manquent : {'Pistons', 'Celtics', 'Bucks', 'Cavaliers', 'Knicks', 'Heat', 'Wizards', 'Pacers', 'Raptors', 'Bulls', 'Magic', 'Hawks', 'Nets', '76ers', 'Hornets'}
-Échec https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?season=2027 -> HTTPError HTTP Error 403: Forbidden
-Échec https://site.api.espn.com/apis/v2/sports/basketball/nba/standings -> HTTPError HTTP Error 403: Forbidden
-Abandon : Aucune adresse n'a fonctionné : HTTP Error 403: Forbidden
+Saison pas encore commencée (aucune entrée).
+Test saison précédente OK, top 3 Est : ['Pistons', 'Celtics', 'Knicks'] | Ouest : ['Thunder', 'Spurs', 'Nuggets']
