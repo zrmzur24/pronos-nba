@@ -1,0 +1,25 @@
+{
+  "season": "2026-27",
+  "players": [
+    {
+      "name": "Aly",
+      "east": ["76ers","Knicks","Cavaliers","Heat","Raptors","Pistons","Celtics","Magic","Pacers","Wizards","Hornets","Hawks","Bulls","Bucks","Nets"],
+      "west": ["Lakers","Rockets","Spurs","Thunder","Timberwolves","Nuggets","Jazz","Suns","Warriors","Grizzlies","Mavericks","Trail Blazers","Clippers","Pelicans","Kings"]
+    },
+    {
+      "name": "Lucas",
+      "east": ["Knicks","76ers","Cavaliers","Celtics","Magic","Pistons","Raptors","Heat","Pacers","Hawks","Wizards","Hornets","Bulls","Nets","Bucks"],
+      "west": ["Thunder","Spurs","Timberwolves","Lakers","Nuggets","Rockets","Jazz","Suns","Trail Blazers","Mavericks","Pelicans","Warriors","Grizzlies","Clippers","Kings"]
+    },
+    {
+      "name": "Joueur 3",
+      "east": ["Knicks","76ers","Cavaliers","Pistons","Celtics","Heat","Pacers","Hawks","Magic","Raptors","Wizards","Hornets","Bulls","Bucks","Nets"],
+      "west": ["Thunder","Spurs","Timberwolves","Lakers","Nuggets","Suns","Rockets","Jazz","Warriors","Trail Blazers","Mavericks","Clippers","Pelicans","Grizzlies","Kings"]
+    },
+    {
+      "name": "Evan",
+      "east": ["Celtics","Heat","Knicks","76ers","Pistons","Hawks","Cavaliers","Raptors","Pacers","Magic","Wizards","Hornets","Bulls","Bucks","Nets"],
+      "west": ["Spurs","Thunder","Nuggets","Lakers","Timberwolves","Suns","Rockets","Jazz","Mavericks","Trail Blazers","Grizzlies","Warriors","Pelicans","Clippers","Kings"]
+    }
+  ]
+}
