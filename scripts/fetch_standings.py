@@ -13,10 +13,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SEASON_END_YEAR = 2027  # saison 2026-27
-URL = (
-    "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings"
-    f"?season={SEASON_END_YEAR}&seasontype=2"
-)
+URLS = [
+    f"https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?season={SEASON_END_YEAR}&seasontype=2",
+    f"https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season={SEASON_END_YEAR}&seasontype=2",
+    f"https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?season={SEASON_END_YEAR}",
+    "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings",
+]
+LOG = []
+
+
+def log(*a):
+    msg = " ".join(str(x) for x in a)
+    print(msg)
+    LOG.append(msg)
 
 TEAMS = {
     "east": ["76ers", "Knicks", "Celtics", "Pistons", "Raptors", "Cavaliers", "Heat",
@@ -49,10 +58,29 @@ def stat(entry, *names):
     return None
 
 
-def fetch():
-    req = urllib.request.Request(URL, headers={"User-Agent": "pronos-nba/1.0"})
+def fetch_one(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (pronos-nba)"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.load(r)
+
+
+def fetch_and_parse():
+    """Essaie chaque adresse ESPN jusqu'à obtenir un classement complet."""
+    last_err = None
+    for url in URLS:
+        try:
+            payload = fetch_one(url)
+            season = payload.get("season") or {}
+            log("Réponse de", url, "| clés :", list(payload.keys())[:8], "| saison :", season.get("year") or season)
+            parsed = parse(payload)
+            if int(season.get("year") or SEASON_END_YEAR) != SEASON_END_YEAR:
+                log("Mauvaise saison, on passe.")
+                continue
+            return parsed
+        except Exception as e:  # noqa: BLE001
+            last_err = e
+            log("Échec", url, "->", type(e).__name__, e)
+    raise RuntimeError(f"Aucune adresse n'a fonctionné : {last_err}")
 
 
 def parse(payload):
@@ -67,7 +95,7 @@ def parse(payload):
             team = e.get("team", {})
             nick = nickname(team.get("displayName", "")) or nickname(team.get("name", "") or "")
             if not nick:
-                print("Équipe inconnue :", team.get("displayName"), file=sys.stderr)
+                log("Équipe inconnue :", team.get("displayName"))
                 continue
             out[conf].append({
                 "team": nick,
@@ -84,9 +112,18 @@ def parse(payload):
     return out
 
 
+def write_log(ok):
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    (DATA / "robot.log").write_text(f"{now} — {'OK' if ok else 'ECHEC'}\n" + "\n".join(LOG) + "\n")
+
+
 def main():
-    payload = fetch()
-    parsed = parse(payload)
+    try:
+        parsed = fetch_and_parse()
+    except Exception as e:  # noqa: BLE001
+        log("Abandon :", e)
+        write_log(False)
+        return
     started = any(t["w"] + t["l"] > 0 for c in parsed.values() for t in c)
     now = datetime.now(timezone.utc)
     standings = {
@@ -109,7 +146,8 @@ def main():
         }
         history = [h for h in history if h["date"] != today] + [snapshot]
         hist_path.write_text(json.dumps(history, ensure_ascii=False))
-    print("OK — saison commencée :", started)
+    log("OK — saison commencée :", started)
+    write_log(True)
 
 
 if __name__ == "__main__":
