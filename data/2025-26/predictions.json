@@ -1,0 +1,25 @@
+{
+  "season": "2025-26",
+  "players": [
+    {
+      "name": "Aly",
+      "east": ["Knicks","Cavaliers","Magic","Raptors","Hawks","76ers","Pistons","Bucks","Celtics","Heat","Pacers","Bulls","Hornets","Wizards","Nets"],
+      "west": ["Rockets","Thunder","Nuggets","Clippers","Lakers","Timberwolves","Spurs","Mavericks","Warriors","Trail Blazers","Suns","Pelicans","Kings","Grizzlies","Jazz"]
+    },
+    {
+      "name": "Lucas",
+      "east": ["Cavaliers","Pistons","Knicks","Heat","Bucks","76ers","Magic","Hawks","Bulls","Celtics","Raptors","Pacers","Hornets","Wizards","Nets"],
+      "west": ["Thunder","Nuggets","Lakers","Rockets","Spurs","Timberwolves","Warriors","Trail Blazers","Clippers","Mavericks","Suns","Kings","Grizzlies","Jazz","Pelicans"]
+    },
+    {
+      "name": "Q",
+      "east": ["Cavaliers","Knicks","Magic","Pistons","Bucks","Hawks","Celtics","Heat","Bulls","Pacers","76ers","Raptors","Wizards","Hornets","Nets"],
+      "west": ["Thunder","Nuggets","Timberwolves","Rockets","Lakers","Suns","Clippers","Spurs","Kings","Mavericks","Warriors","Grizzlies","Trail Blazers","Pelicans","Jazz"]
+    },
+    {
+      "name": "Evan",
+      "east": ["Cavaliers","Knicks","Magic","Pistons","Heat","Hawks","Bucks","76ers","Pacers","Bulls","Raptors","Celtics","Hornets","Wizards","Nets"],
+      "west": ["Thunder","Nuggets","Mavericks","Rockets","Spurs","Timberwolves","Lakers","Warriors","Grizzlies","Clippers","Suns","Trail Blazers","Kings","Jazz","Pelicans"]
+    }
+  ]
+}
