@@ -13,12 +13,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SEASON_END_YEAR = 2027  # saison 2026-27
-URLS = [
-    f"https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?season={SEASON_END_YEAR}&seasontype=2",
-    f"https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season={SEASON_END_YEAR}&seasontype=2",
-    f"https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?season={SEASON_END_YEAR}",
+BASES = [
+    "https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings",
     "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings",
 ]
+URLS = [f"{b}?season={SEASON_END_YEAR}&seasontype=2" for b in BASES]
 LOG = []
 
 
@@ -72,10 +71,19 @@ def fetch_and_parse():
             payload = fetch_one(url)
             season = payload.get("season") or {}
             log("Réponse de", url, "| clés :", list(payload.keys())[:8], "| saison :", season.get("year") or season)
-            parsed = parse(payload)
             if int(season.get("year") or SEASON_END_YEAR) != SEASON_END_YEAR:
                 log("Mauvaise saison, on passe.")
                 continue
+            parsed = parse(payload)
+            if parsed is None:
+                log("Saison pas encore commencée (aucune entrée).")
+                # test de lecture sur la saison précédente, pour vérifier que le format est bon
+                try:
+                    prev = parse(fetch_one(url.replace(f"season={SEASON_END_YEAR}", f"season={SEASON_END_YEAR-1}")))
+                    log("Test saison précédente OK, top 3 Est :", [t["team"] for t in prev["east"][:3]],
+                        "| Ouest :", [t["team"] for t in prev["west"][:3]])
+                except Exception as e:  # noqa: BLE001
+                    log("Test saison précédente raté :", type(e).__name__, e)
             return parsed
         except Exception as e:  # noqa: BLE001
             last_err = e
@@ -104,6 +112,8 @@ def parse(payload):
                 "pct": float(stat(e, "winPercent") or 0),
                 "seed": stat(e, "playoffSeed"),
             })
+    if not out["east"] and not out["west"]:
+        return None
     for conf in out:
         out[conf].sort(key=lambda t: (-t["pct"], -t["w"], t["seed"] if t["seed"] is not None else 99, t["team"]))
         missing = set(TEAMS[conf]) - {t["team"] for t in out[conf]}
@@ -124,8 +134,14 @@ def main():
         log("Abandon :", e)
         write_log(False)
         return
-    started = any(t["w"] + t["l"] > 0 for c in parsed.values() for t in c)
     now = datetime.now(timezone.utc)
+    if parsed is None:
+        standings = {"updated": now.isoformat(timespec="seconds"), "season": f"{SEASON_END_YEAR - 1}-{str(SEASON_END_YEAR)[2:]}",
+                     "started": False, "east": [], "west": []}
+        (DATA / "standings.json").write_text(json.dumps(standings, ensure_ascii=False, indent=1))
+        write_log(True)
+        return
+    started = any(t["w"] + t["l"] > 0 for c in parsed.values() for t in c)
     standings = {
         "updated": now.isoformat(timespec="seconds"),
         "season": f"{SEASON_END_YEAR - 1}-{str(SEASON_END_YEAR)[2:]}",
