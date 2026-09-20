@@ -224,7 +224,7 @@ async function load(){
   // hors saison, on compte seulement les paris
   if(!started) pred.players.forEach(p=>{let b=0;for(const c of ['east','west']){const pr=rankOf(p[c]),br=rankOf(book[c]);for(const t of p[c]) if(Math.abs(pr[t]-br[t])>=3)b++;}sc[p.name].bets=b;});
   const d=real.updated?new Date(real.updated):null;
-  $('#stamp').innerHTML=d?`Classement du<br><b>${d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</b>`:'Saison pas<br><b>encore lancée</b>';
+  $('#stamp').innerHTML=(d&&started)?`Classement du<br><b>${d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</b>`:'Saison pas<br><b>encore lancée</b>';
   renderLeaderboard(pred.players,sc,started,book);
   if(demo){$('#stamp').innerHTML='<b>Démo</b><br>données fictives';}
   renderConf('east',pred.players,real,book,started);
