@@ -214,7 +214,9 @@ function renderChart(players,history,book){
 
 async function load(){
   const bust='?t='+Date.now();
-  const [pred,book,real,history]=await Promise.all(['predictions','reference','standings','history'].map(f=>fetch('data/'+f+'.json'+bust).then(r=>{if(!r.ok)throw new Error(f);return r.json();})));
+  const demo=new URLSearchParams(location.search).has('demo');
+  const files=['predictions','reference',demo?'demo_standings':'standings',demo?'demo_history':'history'];
+  const [pred,book,real,history]=await Promise.all(files.map(f=>fetch('data/'+f+'.json'+bust).then(r=>{if(!r.ok)throw new Error(f);return r.json();})));
   const started=!!real.started && real.east.length===15 && real.west.length===15;
   const realRanks={east:(real.east||[]).map(t=>t.team),west:(real.west||[]).map(t=>t.team)};
   const sc={};
@@ -224,6 +226,7 @@ async function load(){
   const d=real.updated?new Date(real.updated):null;
   $('#stamp').innerHTML=d?`Classement du<br><b>${d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</b>`:'Saison pas<br><b>encore lancée</b>';
   renderLeaderboard(pred.players,sc,started,book);
+  if(demo){$('#stamp').innerHTML='<b>Démo</b><br>données fictives';}
   renderConf('east',pred.players,real,book,started);
   renderConf('west',pred.players,real,book,started);
   renderDetail(pred.players,sc,started);
