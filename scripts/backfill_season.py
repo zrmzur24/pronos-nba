@@ -48,6 +48,11 @@ while d <= END:
         comp = (ev.get("competitions") or [{}])[0]
         if not (comp.get("status") or {}).get("type", {}).get("completed"): continue
         if ev["id"] in games_seen: continue
+        # finale de la NBA Cup (Las Vegas) : ne compte pas au classement
+        venue = ((comp.get("venue") or {}).get("fullName") or "")
+        notes = " ".join((n.get("headline") or "") for n in comp.get("notes", []))
+        if "T-Mobile Arena" in venue or ("Cup" in notes and ("Final" in notes or "Championship" in notes)):
+            log(f"{d} : finale NBA Cup ignorée ({venue} / {notes})"); continue
         teams = comp.get("competitors", [])
         if len(teams) != 2: continue
         names = [nick(c["team"].get("displayName", "")) for c in teams]
