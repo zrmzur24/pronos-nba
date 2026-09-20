@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pronos NBA 2026-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF1F5; --card:#FFFFFF; --ink:#14213D; --ink-2:#4C5670; --line:#D5DAE3;
+  --leather:#B85C1E; --hit:#1F7A4D; --near:#C58A16; --miss:#B23A3A; --bet:#5B3FA6;
+  --safe-top:env(safe-area-inset-top,0px); --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#0F1626;--card:#1A2236;--ink:#EEF1F5;--ink-2:#A6AFC4;--line:#2A3450;--leather:#E0803A;--hit:#3FB57A;--near:#E3B04B;--miss:#E06767;--bet:#A28BE8}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:var(--safe-top)}
+body{font-family:"Barlow Semi Condensed",system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.35;padding-bottom:calc(72px + var(--safe-bottom));font-variant-numeric:tabular-nums}
+header{padding:calc(16px + var(--safe-top)) 18px 10px;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+h1{font-size:28px;font-weight:800;letter-spacing:-.01em;line-height:1}
+h1 small{display:block;font-size:14px;font-weight:500;color:var(--ink-2);letter-spacing:0;margin-top:4px}
+.stamp{font-size:13px;color:var(--ink-2);text-align:right;line-height:1.25}
+.stamp b{color:var(--ink);font-weight:600}
+main{padding:6px 14px 20px;max-width:640px;margin:0 auto}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px}
+.card + .card{margin-top:12px}
+h2{font-size:17px;font-weight:600;margin-bottom:10px}
+.note{font-size:14px;color:var(--ink-2)}
+/* leaderboard */
+.race{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px}
+.row .pos{font-size:20px;font-weight:800;color:var(--ink-2)}
+.row.first .pos{color:var(--leather)}
+.row .nm{font-size:19px;font-weight:600}
+.row .pts{font-size:26px;font-weight:800;line-height:1}
+.row .pts small{font-size:12px;font-weight:500;color:var(--ink-2);margin-left:2px}
+.bar{grid-column:2/4;height:9px;background:var(--line);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:5px;transition:width .6s ease}
+.row.first .bar i{background:var(--leather)}
+.sub{grid-column:2/4;font-size:13px;color:var(--ink-2);margin-top:-4px}
+/* standings table */
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{font-weight:500;color:var(--ink-2);font-size:13px;text-align:center;padding:4px 2px;border-bottom:1px solid var(--line)}
+th:nth-child(2){text-align:left}
+td{padding:7px 2px;border-bottom:1px solid var(--line);text-align:center}
+tr:last-child td{border-bottom:0}
+td.rk{font-weight:800;color:var(--ink-2);width:24px}
+td.tm{text-align:left;font-weight:600;white-space:nowrap}
+td.tm small{display:block;font-weight:400;color:var(--ink-2);font-size:12px}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:26px;padding:0 5px;border-radius:7px;font-weight:600;font-size:14px;color:#fff;background:var(--ink-2);position:relative}
+.chip.hit{background:var(--hit)}.chip.near{background:var(--near)}.chip.miss{background:var(--miss)}.chip.zero{background:transparent;color:var(--ink-2);border:1px solid var(--line)}
+.chip.bet::after{content:"";position:absolute;top:-4px;right:-4px;width:10px;height:10px;border-radius:50%;background:var(--bet);border:2px solid var(--card)}
+.chip.won{box-shadow:0 0 0 2px var(--bet)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--ink-2);margin:10px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend .chip{min-width:18px;height:16px;font-size:0;border-radius:4px}
+/* detail */
+.dl{display:grid;grid-template-columns:1fr auto;row-gap:5px;font-size:15px}
+.dl dt{color:var(--ink-2)}.dl dd{font-weight:600;text-align:right}
+.dl dd.tot{font-size:20px;font-weight:800;color:var(--leather)}
+/* chart */
+svg{width:100%;height:auto;display:block}
+/* rules */
+.rules p{margin-bottom:9px;font-size:15px}
+.rules b{font-weight:600}
+.rules ul{padding-left:18px;margin-bottom:9px;font-size:15px}
+/* tabs */
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:var(--safe-bottom)}
+nav button{flex:1;background:none;border:0;padding:11px 0 9px;font:inherit;font-size:14px;font-weight:500;color:var(--ink-2);cursor:pointer}
+nav button.on{color:var(--leather);font-weight:600;box-shadow:inset 0 3px 0 var(--leather)}
+nav button:focus-visible{outline:2px solid var(--leather);outline-offset:-2px}
+.empty{text-align:center;padding:26px 10px;color:var(--ink-2);font-size:15px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Pronos NBA <small>Saison 2026-27</small></h1>
+  <div class="stamp" id="stamp">Chargement…</div>
+</header>
+<main>
+  <section id="s-classement" class="on"></section>
+  <section id="s-est"></section>
+  <section id="s-ouest"></section>
+  <section id="s-detail"></section>
+  <section id="s-courbe"></section>
+  <section id="s-regles" class="rules">
+    <div class="card">
+      <h2>Comment on compte les points</h2>
+      <p>Chacun a classé les 15 équipes de chaque conférence avant la saison. On compare avec le classement de la saison régulière.</p>
+      <p><b>Précision</b>, pour chaque équipe, selon l'écart entre la place prédite et la place réelle :</p>
+      <ul><li>Écart 0 : +5</li><li>Écart 1 : +3</li><li>Écart 2 : +1</li><li>Écart 3 ou 4 : 0</li><li>Écart 5 ou plus : −2</li></ul>
+      <p><b>Prise de risque.</b> Le classement des bookmakers avant la saison sert de référence. Une prédiction est un <b>pari</b> quand elle s'écarte d'au moins 3 places de cette référence.</p>
+      <ul><li>Pari réussi (ta place est plus proche de la réalité que celle du bookmaker) : +3</li><li>Pari raté : aucun malus, 0 au pire</li></ul>
+      <p><b>Vainqueur.</b> Total sur les 30 équipes. En cas d'égalité, le plus grand nombre de placements exacts l'emporte.</p>
+      <p class="note">Le classement se met à jour tout seul chaque jour vers 14h (heure de Paris). Rien n'est définitif avant la fin de la saison régulière.</p>
+    </div>
+  </section>
+</main>
+<nav>
+  <button data-t="classement" class="on">Joueurs</button>
+  <button data-t="est">Est</button>
+  <button data-t="ouest">Ouest</button>
+  <button data-t="detail">Détail</button>
+  <button data-t="courbe">Courbe</button>
+  <button data-t="regles">Règles</button>
+</nav>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('main section').forEach(s=>s.classList.toggle('on',s.id==='s-'+b.dataset.t));
+  window.scrollTo(0,0);
+});
+
+const CONF={east:'Est',west:'Ouest'};
+const rankOf=list=>Object.fromEntries(list.map((t,i)=>[t,i+1]));
+
+// ---- scoring (mêmes règles que l'onglet Règles) ----
+function scoreTeam(pred,real,book){
+  const d=Math.abs(pred-real), bet=Math.abs(pred-book)>=3;
+  let prec = d===0?5:d===1?3:d===2?1:d>=5?-2:0;
+  if(bet && prec<0) prec=0;
+  const won = bet && Math.abs(pred-real)<Math.abs(book-real);
+  return {d,bet,prec,bonus:won?3:0,won,exact:d===0};
+}
+function scorePlayer(pl,real,book){
+  const s={prec:0,bonus:0,malus:0,exact:0,bets:0,won:0,total:0};
+  for(const c of ['east','west']){
+    const pr=rankOf(pl[c]), rr=rankOf(real[c]), br=rankOf(book[c]);
+    for(const t of pl[c]){
+      const r=scoreTeam(pr[t],rr[t],br[t]);
+      s.prec+=Math.max(r.prec,0); s.malus+=Math.min(r.prec,0); s.bonus+=r.bonus;
+      s.exact+=r.exact; s.bets+=r.bet; s.won+=r.won;
+    }
+  }
+  s.total=s.prec+s.malus+s.bonus; return s;
+}
+function standingsOf(pl,real,book){ return scorePlayer(pl,real,book); }
+const sortPlayers=(players,sc)=>[...players].sort((a,b)=>sc[b.name].total-sc[a.name].total||sc[b.name].exact-sc[a.name].exact);
+
+// ---- rendering ----
+function renderLeaderboard(players,sc,started,book){
+  const ord=sortPlayers(players,sc);
+  const max=Math.max(1,...ord.map(p=>sc[p.name].total));
+  let html='<div class="card"><h2>'+(started?'Classement général':'En attente du premier match')+'</h2>';
+  if(!started){
+    html+='<p class="note" style="margin-bottom:12px">Les pronos sont enregistrés. Voici combien de paris chacun a pris par rapport aux bookmakers.</p>';
+  }
+  html+='<div class="race">';
+  ord.forEach((p,i)=>{
+    const s=sc[p.name];
+    if(started){
+      html+=`<div class="row${i===0?' first':''}"><span class="pos">${i+1}</span><span class="nm">${esc(p.name)}</span><span class="pts">${s.total}<small>pts</small></span><span class="bar"><i style="width:${Math.max(2,100*s.total/max)}%"></i></span><span class="sub">${s.exact} exact${s.exact>1?'s':''} · ${s.won}/${s.bets} paris gagnés</span></div>`;
+    }else{
+      html+=`<div class="row"><span class="pos">–</span><span class="nm">${esc(p.name)}</span><span class="pts">${s.bets}<small>paris</small></span><span class="bar"><i style="width:${Math.max(2,100*s.bets/Math.max(1,...ord.map(q=>sc[q.name].bets)))}%"></i></span></div>`;
+    }
+  });
+  html+='</div></div>';
+  $('#s-classement').innerHTML=html;
+}
+
+function renderConf(conf,players,real,book,started){
+  const order = started ? real[conf].map(t=>t.team) : book[conf];
+  const rec = Object.fromEntries((real[conf]||[]).map(t=>[t.team,t]));
+  const rr=rankOf(order), br=rankOf(book[conf]);
+  const heads=players.map(p=>`<th title="${esc(p.name)}">${esc(p.name.slice(0,3))}</th>`).join('');
+  let html=`<div class="card"><h2>${CONF[conf]} — ${started?'classement actuel':'référence bookmakers'}</h2><div style="overflow-x:auto"><table><thead><tr><th></th><th>Équipe</th>${heads}</tr></thead><tbody>`;
+  order.forEach((t,i)=>{
+    const r=rec[t];
+    let cells=players.map(p=>{
+      const pred=rankOf(p[conf])[t];
+      if(!started){ const bet=Math.abs(pred-br[t])>=3; return `<td><span class="chip zero${bet?' bet':''}">${pred}</span></td>`; }
+      const s=scoreTeam(pred,rr[t],br[t]);
+      const cls=s.d===0?'hit':s.d<=2?'near':s.prec<0?'miss':'zero';
+      return `<td><span class="chip ${cls}${s.bet?' bet':''}${s.won?' won':''}">${pred}</span></td>`;
+    }).join('');
+    html+=`<tr><td class="rk">${i+1}</td><td class="tm">${esc(t)}${r&&started?`<small>${r.w}–${r.l}</small>`:''}</td>${cells}</tr>`;
+  });
+  html+='</tbody></table></div>';
+  html+= started
+    ? '<div class="legend"><span><i class="chip hit"></i>exact</span><span><i class="chip near"></i>à 1–2 places</span><span><i class="chip zero"></i>à 3–4</span><span><i class="chip miss"></i>5+ (−2)</span><span><i class="chip zero bet"></i>pari</span><span><i class="chip zero won"></i>pari gagné (+3)</span></div>'
+    : '<div class="legend"><span><i class="chip zero bet"></i>pari (≥3 places d\'écart avec les bookmakers)</span></div>';
+  html+='</div>';
+  $('#s-'+(conf==='east'?'est':'ouest')).innerHTML=html;
+}
+
+function renderDetail(players,sc,started){
+  if(!started){ $('#s-detail').innerHTML='<div class="card empty">Le détail des points apparaîtra dès le premier match joué.</div>'; return; }
+  $('#s-detail').innerHTML=sortPlayers(players,sc).map(p=>{const s=sc[p.name];return `<div class="card"><h2>${esc(p.name)}</h2><dl class="dl"><dt>Précision</dt><dd>+${s.prec}</dd><dt>Bonus paris (${s.won} gagné${s.won>1?'s':''} sur ${s.bets})</dt><dd>+${s.bonus}</dd><dt>Malus écarts de 5+</dt><dd>${s.malus}</dd><dt>Placements exacts</dt><dd>${s.exact}</dd><dt>Total</dt><dd class="tot">${s.total}</dd></dl></div>`;}).join('');
+}
+
+function renderChart(players,history,book){
+  const box=$('#s-courbe');
+  if(!history||history.length<2){ box.innerHTML='<div class="card empty">La courbe se dessine au fil des jours, dès qu\'il y a au moins deux relevés.</div>'; return; }
+  const series=players.map(p=>({name:p.name,pts:history.map(h=>scorePlayer(p,{east:h.east,west:h.west},book).total)}));
+  const all=series.flatMap(s=>s.pts), lo=Math.min(...all), hi=Math.max(...all);
+  const W=600,H=300,L=34,R=26,T=14,B=30, n=history.length;
+  const x=i=>L+(W-L-R)*i/(n-1), y=v=>T+(H-T-B)*(1-(v-lo)/Math.max(1,hi-lo));
+  const cols=['var(--leather)','var(--hit)','var(--bet)','var(--ink-2)'];
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Évolution des points">`;
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;svg+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${y(v)+4}" font-size="12" text-anchor="end" fill="var(--ink-2)">${Math.round(v)}</text>`;}
+  const step=Math.max(1,Math.floor(n/5));
+  history.forEach((h,i)=>{ if(i%step===0||i===n-1) svg+=`<text x="${x(i)}" y="${H-10}" font-size="12" text-anchor="middle" fill="var(--ink-2)">${h.date.slice(8,10)}/${h.date.slice(5,7)}</text>`; });
+  series.forEach((s,k)=>{svg+=`<polyline fill="none" stroke="${cols[k%4]}" stroke-width="3" stroke-linejoin="round" points="${s.pts.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;});
+  svg+='</svg>';
+  const leg=series.map((s,k)=>`<span style="display:inline-flex;align-items:center;gap:6px;margin-right:14px;font-size:14px"><i style="width:14px;height:4px;background:${cols[k%4]};border-radius:2px;display:inline-block"></i>${esc(s.name)}</span>`).join('');
+  box.innerHTML=`<div class="card"><h2>Évolution des points</h2>${svg}<div style="margin-top:8px">${leg}</div></div>`;
+}
+
+async function load(){
+  const bust='?t='+Date.now();
+  const [pred,book,real,history]=await Promise.all(['predictions','reference','standings','history'].map(f=>fetch('data/'+f+'.json'+bust).then(r=>{if(!r.ok)throw new Error(f);return r.json();})));
+  const started=!!real.started && real.east.length===15 && real.west.length===15;
+  const realRanks={east:(real.east||[]).map(t=>t.team),west:(real.west||[]).map(t=>t.team)};
+  const sc={};
+  pred.players.forEach(p=>sc[p.name]=started?scorePlayer(p,realRanks,book):{...scorePlayer(p,book,book),total:0,exact:0,won:0});
+  // hors saison, on compte seulement les paris
+  if(!started) pred.players.forEach(p=>{let b=0;for(const c of ['east','west']){const pr=rankOf(p[c]),br=rankOf(book[c]);for(const t of p[c]) if(Math.abs(pr[t]-br[t])>=3)b++;}sc[p.name].bets=b;});
+  const d=real.updated?new Date(real.updated):null;
+  $('#stamp').innerHTML=d?`Classement du<br><b>${d.toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</b>`:'Saison pas<br><b>encore lancée</b>';
+  renderLeaderboard(pred.players,sc,started,book);
+  renderConf('east',pred.players,real,book,started);
+  renderConf('west',pred.players,real,book,started);
+  renderDetail(pred.players,sc,started);
+  renderChart(pred.players,history,book);
+}
+load().catch(e=>{$('#s-classement').innerHTML=`<div class="card empty">Impossible de charger les données (${esc(e.message)}). Réessaie dans un instant.</div>`;$('#stamp').textContent='';});
+</script>
+</body>
+</html>
