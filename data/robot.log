@@ -1,4 +1,3 @@
-2026-09-23T16:20:34+00:00 — OK
+2026-09-24T16:42:28+00:00 — OK
 Réponse de https://site.web.api.espn.com/apis/v2/sports/basketball/nba/standings?season=2027&seasontype=2 | clés : ['uid', 'id', 'name', 'abbreviation', 'shortName', 'children', 'isConference', 'season'] | saison : 2027
-Saison pas encore commencée (aucune entrée).
-Test saison précédente OK, top 3 Est : ['Pistons', 'Celtics', 'Knicks'] | Ouest : ['Thunder', 'Spurs', 'Nuggets']
+OK — saison commencée : False
