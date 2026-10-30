@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T18:10:25+00:00",
+ "updated": "2026-10-30T17:49:02+00:00",
  "season": "2026-27",
  "started": true,
  "east": [
@@ -16,19 +16,13 @@
    "pct": 0.8
   },
   {
-   "team": "Raptors",
-   "w": 3,
-   "l": 1,
-   "pct": 0.75
-  },
-  {
    "team": "Celtics",
    "w": 3,
    "l": 1,
    "pct": 0.75
   },
   {
-   "team": "Cavaliers",
+   "team": "Raptors",
    "w": 3,
    "l": 1,
    "pct": 0.75
@@ -40,10 +34,16 @@
    "pct": 0.6
   },
   {
+   "team": "Cavaliers",
+   "w": 3,
+   "l": 2,
+   "pct": 0.6
+  },
+  {
    "team": "Hawks",
-   "w": 2,
+   "w": 3,
    "l": 3,
-   "pct": 0.4
+   "pct": 0.5
   },
   {
    "team": "Knicks",
@@ -103,15 +103,15 @@
   },
   {
    "team": "Grizzlies",
-   "w": 4,
+   "w": 5,
    "l": 0,
    "pct": 1.0
   },
   {
-   "team": "Trail Blazers",
-   "w": 3,
-   "l": 0,
-   "pct": 1.0
+   "team": "Thunder",
+   "w": 4,
+   "l": 1,
+   "pct": 0.8
   },
   {
    "team": "Lakers",
@@ -120,10 +120,10 @@
    "pct": 0.8
   },
   {
-   "team": "Thunder",
-   "w": 4,
+   "team": "Trail Blazers",
+   "w": 3,
    "l": 1,
-   "pct": 0.8
+   "pct": 0.75
   },
   {
    "team": "Spurs",
@@ -175,14 +175,14 @@
   },
   {
    "team": "Pelicans",
-   "w": 0,
+   "w": 1,
    "l": 4,
-   "pct": 0.0
+   "pct": 0.2
   },
   {
    "team": "Kings",
    "w": 0,
-   "l": 4,
+   "l": 5,
    "pct": 0.0
   }
  ]
