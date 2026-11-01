@@ -1,16 +1,16 @@
 {
- "updated": "2026-10-31T16:57:50+00:00",
+ "updated": "2026-11-01T17:44:05+00:00",
  "season": "2026-27",
  "started": true,
  "east": [
   {
-   "team": "Pistons",
-   "w": 5,
+   "team": "76ers",
+   "w": 6,
    "l": 1,
-   "pct": 0.8333333
+   "pct": 0.85714287
   },
   {
-   "team": "76ers",
+   "team": "Pistons",
    "w": 5,
    "l": 1,
    "pct": 0.8333333
@@ -22,22 +22,16 @@
    "pct": 0.8
   },
   {
+   "team": "Cavaliers",
+   "w": 4,
+   "l": 2,
+   "pct": 0.6666667
+  },
+  {
    "team": "Raptors",
    "w": 3,
    "l": 2,
    "pct": 0.6
-  },
-  {
-   "team": "Cavaliers",
-   "w": 3,
-   "l": 2,
-   "pct": 0.6
-  },
-  {
-   "team": "Hawks",
-   "w": 3,
-   "l": 3,
-   "pct": 0.5
   },
   {
    "team": "Wizards",
@@ -46,10 +40,16 @@
    "pct": 0.5
   },
   {
+   "team": "Hawks",
+   "w": 3,
+   "l": 4,
+   "pct": 0.42857143
+  },
+  {
    "team": "Hornets",
    "w": 3,
-   "l": 3,
-   "pct": 0.5
+   "l": 4,
+   "pct": 0.42857143
   },
   {
    "team": "Magic",
@@ -76,13 +76,13 @@
    "pct": 0.33333334
   },
   {
-   "team": "Bucks",
+   "team": "Bulls",
    "w": 1,
-   "l": 4,
-   "pct": 0.2
+   "l": 5,
+   "pct": 0.16666667
   },
   {
-   "team": "Bulls",
+   "team": "Bucks",
    "w": 1,
    "l": 5,
    "pct": 0.16666667
@@ -97,30 +97,36 @@
  "west": [
   {
    "team": "Grizzlies",
-   "w": 5,
+   "w": 6,
    "l": 0,
    "pct": 1.0
   },
   {
    "team": "Rockets",
-   "w": 5,
+   "w": 6,
    "l": 1,
-   "pct": 0.8333333
+   "pct": 0.85714287
   },
   {
-   "team": "Thunder",
+   "team": "Trail Blazers",
    "w": 4,
    "l": 1,
    "pct": 0.8
   },
   {
-   "team": "Trail Blazers",
-   "w": 3,
-   "l": 1,
-   "pct": 0.75
+   "team": "Lakers",
+   "w": 4,
+   "l": 2,
+   "pct": 0.6666667
   },
   {
-   "team": "Lakers",
+   "team": "Thunder",
+   "w": 4,
+   "l": 2,
+   "pct": 0.6666667
+  },
+  {
+   "team": "Spurs",
    "w": 4,
    "l": 2,
    "pct": 0.6666667
@@ -132,22 +138,16 @@
    "pct": 0.6666667
   },
   {
-   "team": "Timberwolves",
-   "w": 4,
-   "l": 2,
-   "pct": 0.6666667
-  },
-  {
-   "team": "Spurs",
-   "w": 3,
-   "l": 2,
-   "pct": 0.6
-  },
-  {
    "team": "Nuggets",
    "w": 3,
    "l": 2,
    "pct": 0.6
+  },
+  {
+   "team": "Timberwolves",
+   "w": 4,
+   "l": 3,
+   "pct": 0.5714286
   },
   {
    "team": "Warriors",
@@ -156,22 +156,16 @@
    "pct": 0.5
   },
   {
+   "team": "Pelicans",
+   "w": 2,
+   "l": 4,
+   "pct": 0.33333334
+  },
+  {
    "team": "Suns",
    "w": 1,
    "l": 3,
    "pct": 0.25
-  },
-  {
-   "team": "Jazz",
-   "w": 1,
-   "l": 4,
-   "pct": 0.2
-  },
-  {
-   "team": "Pelicans",
-   "w": 1,
-   "l": 4,
-   "pct": 0.2
   },
   {
    "team": "Clippers",
@@ -180,9 +174,15 @@
    "pct": 0.2
   },
   {
+   "team": "Jazz",
+   "w": 1,
+   "l": 5,
+   "pct": 0.16666667
+  },
+  {
    "team": "Kings",
    "w": 0,
-   "l": 5,
+   "l": 6,
    "pct": 0.0
   }
  ]
