@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T17:33:51+00:00",
+ "updated": "2026-11-08T17:44:22+00:00",
  "season": "2026-27",
  "started": true,
  "east": [
@@ -23,9 +23,15 @@
   },
   {
    "team": "Hawks",
-   "w": 6,
+   "w": 7,
    "l": 4,
-   "pct": 0.6
+   "pct": 0.6363636
+  },
+  {
+   "team": "Knicks",
+   "w": 5,
+   "l": 4,
+   "pct": 0.5555556
   },
   {
    "team": "Raptors",
@@ -36,29 +42,17 @@
   {
    "team": "Cavaliers",
    "w": 5,
-   "l": 4,
-   "pct": 0.5555556
-  },
-  {
-   "team": "Knicks",
-   "w": 4,
-   "l": 4,
+   "l": 5,
    "pct": 0.5
   },
   {
    "team": "Wizards",
    "w": 4,
-   "l": 5,
-   "pct": 0.44444445
+   "l": 6,
+   "pct": 0.4
   },
   {
    "team": "Heat",
-   "w": 3,
-   "l": 6,
-   "pct": 0.33333334
-  },
-  {
-   "team": "Pacers",
    "w": 3,
    "l": 6,
    "pct": 0.33333334
@@ -70,16 +64,22 @@
    "pct": 0.3
   },
   {
+   "team": "Pacers",
+   "w": 3,
+   "l": 7,
+   "pct": 0.3
+  },
+  {
    "team": "Magic",
    "w": 2,
-   "l": 6,
-   "pct": 0.25
+   "l": 7,
+   "pct": 0.22222222
   },
   {
    "team": "Nets",
    "w": 2,
-   "l": 6,
-   "pct": 0.25
+   "l": 7,
+   "pct": 0.22222222
   },
   {
    "team": "Bulls",
@@ -96,37 +96,37 @@
  ],
  "west": [
   {
+   "team": "Thunder",
+   "w": 8,
+   "l": 2,
+   "pct": 0.8
+  },
+  {
+   "team": "Spurs",
+   "w": 8,
+   "l": 2,
+   "pct": 0.8
+  },
+  {
    "team": "Lakers",
    "w": 8,
    "l": 2,
    "pct": 0.8
   },
   {
-   "team": "Rockets",
+   "team": "Warriors",
    "w": 7,
-   "l": 2,
-   "pct": 0.7777778
-  },
-  {
-   "team": "Thunder",
-   "w": 7,
-   "l": 2,
-   "pct": 0.7777778
-  },
-  {
-   "team": "Spurs",
-   "w": 7,
-   "l": 2,
-   "pct": 0.7777778
-  },
-  {
-   "team": "Trail Blazers",
-   "w": 6,
-   "l": 2,
-   "pct": 0.75
+   "l": 3,
+   "pct": 0.7
   },
   {
    "team": "Timberwolves",
+   "w": 7,
+   "l": 3,
+   "pct": 0.7
+  },
+  {
+   "team": "Rockets",
    "w": 7,
    "l": 3,
    "pct": 0.7
@@ -138,16 +138,16 @@
    "pct": 0.6666667
   },
   {
-   "team": "Warriors",
+   "team": "Trail Blazers",
    "w": 6,
    "l": 3,
    "pct": 0.6666667
   },
   {
    "team": "Nuggets",
-   "w": 4,
+   "w": 5,
    "l": 3,
-   "pct": 0.5714286
+   "pct": 0.625
   },
   {
    "team": "Mavericks",
@@ -163,9 +163,9 @@
   },
   {
    "team": "Suns",
-   "w": 2,
+   "w": 3,
    "l": 5,
-   "pct": 0.2857143
+   "pct": 0.375
   },
   {
    "team": "Clippers",
