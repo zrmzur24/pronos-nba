@@ -1,25 +1,25 @@
 {
- "updated": "2026-11-08T17:44:22+00:00",
+ "updated": "2026-11-09T22:01:48+00:00",
  "season": "2026-27",
  "started": true,
  "east": [
   {
    "team": "76ers",
+   "w": 9,
+   "l": 2,
+   "pct": 0.8181818
+  },
+  {
+   "team": "Celtics",
    "w": 8,
    "l": 2,
    "pct": 0.8
   },
   {
-   "team": "Celtics",
-   "w": 7,
-   "l": 2,
-   "pct": 0.7777778
-  },
-  {
    "team": "Pistons",
    "w": 6,
-   "l": 2,
-   "pct": 0.75
+   "l": 3,
+   "pct": 0.6666667
   },
   {
    "team": "Hawks",
@@ -46,16 +46,16 @@
    "pct": 0.5
   },
   {
-   "team": "Wizards",
+   "team": "Heat",
    "w": 4,
    "l": 6,
    "pct": 0.4
   },
   {
-   "team": "Heat",
-   "w": 3,
+   "team": "Wizards",
+   "w": 4,
    "l": 6,
-   "pct": 0.33333334
+   "pct": 0.4
   },
   {
    "team": "Hornets",
@@ -78,23 +78,29 @@
   {
    "team": "Nets",
    "w": 2,
-   "l": 7,
-   "pct": 0.22222222
+   "l": 8,
+   "pct": 0.2
   },
   {
    "team": "Bulls",
    "w": 1,
-   "l": 7,
-   "pct": 0.125
+   "l": 8,
+   "pct": 0.11111111
   },
   {
    "team": "Bucks",
    "w": 1,
-   "l": 8,
-   "pct": 0.11111111
+   "l": 9,
+   "pct": 0.1
   }
  ],
  "west": [
+  {
+   "team": "Lakers",
+   "w": 9,
+   "l": 2,
+   "pct": 0.8181818
+  },
   {
    "team": "Thunder",
    "w": 8,
@@ -108,19 +114,13 @@
    "pct": 0.8
   },
   {
-   "team": "Lakers",
+   "team": "Timberwolves",
    "w": 8,
-   "l": 2,
-   "pct": 0.8
+   "l": 3,
+   "pct": 0.72727275
   },
   {
    "team": "Warriors",
-   "w": 7,
-   "l": 3,
-   "pct": 0.7
-  },
-  {
-   "team": "Timberwolves",
    "w": 7,
    "l": 3,
    "pct": 0.7
@@ -151,15 +151,15 @@
   },
   {
    "team": "Mavericks",
-   "w": 5,
+   "w": 6,
    "l": 4,
-   "pct": 0.5555556
+   "pct": 0.6
   },
   {
    "team": "Pelicans",
    "w": 4,
-   "l": 5,
-   "pct": 0.44444445
+   "l": 6,
+   "pct": 0.4
   },
   {
    "team": "Suns",
@@ -169,21 +169,21 @@
   },
   {
    "team": "Clippers",
-   "w": 1,
+   "w": 2,
    "l": 7,
-   "pct": 0.125
-  },
-  {
-   "team": "Jazz",
-   "w": 1,
-   "l": 8,
-   "pct": 0.11111111
+   "pct": 0.22222222
   },
   {
    "team": "Kings",
    "w": 1,
-   "l": 8,
-   "pct": 0.11111111
+   "l": 9,
+   "pct": 0.1
+  },
+  {
+   "team": "Jazz",
+   "w": 1,
+   "l": 9,
+   "pct": 0.1
   }
  ]
 }
