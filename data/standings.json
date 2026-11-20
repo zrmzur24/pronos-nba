@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T20:08:07+00:00",
+ "updated": "2026-11-20T19:43:18+00:00",
  "season": "2026-27",
  "started": true,
  "east": [
@@ -35,9 +35,9 @@
   },
   {
    "team": "Knicks",
-   "w": 8,
+   "w": 9,
    "l": 6,
-   "pct": 0.5714286
+   "pct": 0.6
   },
   {
    "team": "Cavaliers",
@@ -90,22 +90,22 @@
   {
    "team": "Bucks",
    "w": 1,
-   "l": 14,
-   "pct": 0.06666667
+   "l": 15,
+   "pct": 0.0625
   }
  ],
  "west": [
   {
-   "team": "Lakers",
+   "team": "Spurs",
    "w": 13,
    "l": 3,
    "pct": 0.8125
   },
   {
-   "team": "Spurs",
-   "w": 12,
+   "team": "Lakers",
+   "w": 13,
    "l": 3,
-   "pct": 0.8
+   "pct": 0.8125
   },
   {
    "team": "Rockets",
@@ -114,22 +114,22 @@
    "pct": 0.75
   },
   {
-   "team": "Timberwolves",
-   "w": 11,
+   "team": "Grizzlies",
+   "w": 12,
    "l": 4,
-   "pct": 0.73333335
+   "pct": 0.75
   },
   {
-   "team": "Grizzlies",
+   "team": "Timberwolves",
    "w": 11,
-   "l": 4,
-   "pct": 0.73333335
+   "l": 5,
+   "pct": 0.6875
   },
   {
    "team": "Trail Blazers",
-   "w": 9,
+   "w": 10,
    "l": 5,
-   "pct": 0.64285713
+   "pct": 0.6666667
   },
   {
    "team": "Nuggets",
@@ -152,8 +152,8 @@
   {
    "team": "Warriors",
    "w": 8,
-   "l": 7,
-   "pct": 0.53333336
+   "l": 8,
+   "pct": 0.5
   },
   {
    "team": "Suns",
@@ -170,8 +170,8 @@
   {
    "team": "Clippers",
    "w": 4,
-   "l": 9,
-   "pct": 0.30769232
+   "l": 10,
+   "pct": 0.2857143
   },
   {
    "team": "Jazz",
